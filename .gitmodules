@@ -1,0 +1,6 @@
+[submodule "busybox"]
+	path = packages/busybox/src
+	url = git://busybox.net/busybox.git
+[submodule "linux"]
+	path = packages/linux/src
+	url = git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
