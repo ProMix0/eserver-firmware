@@ -1,10 +1,11 @@
 
+prepare:
+	cmp config src/.config || cp config src/.config
+	make -C src headers_install INSTALL_HDR_PATH="$(BUILD_TREE_DIR)"
 
 build:
-#	make -C src defconfig
-	cmp config src/.config || cp config src/.config
-	make -C src -j$(shell nproc)
+	make -C src $(COMMON_MAKEFLAGS)
 
 install:
-	cp src/vmlinux $(INSTALLDIR)/images/vmlinux
+	cp src/vmlinux $(OUTDIR)/images/vmlinux
 

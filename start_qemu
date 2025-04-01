@@ -2,6 +2,9 @@
 
 mkdir -p out/images/
 
+# TODO romfs target
+cp -r out/build_tree/{bin,lib} out/romfs/
+
 unlink out/romfs/bin/init
 # /bin/init don't work (why?)
 cp -f init out/romfs/
