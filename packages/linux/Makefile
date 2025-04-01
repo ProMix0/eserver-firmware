@@ -1,6 +1,10 @@
+.PHONY: prepare build install
 
-prepare:
-	cmp config src/.config || cp config src/.config
+src/.config: defconfig
+	cp defconfig src/.config
+	make -C src olddefconfig
+
+prepare: src/.config
 	make -C src headers_install INSTALL_HDR_PATH="$(BUILD_TREE_DIR)"
 
 build:
