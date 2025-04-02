@@ -1,4 +1,4 @@
-
+.PHONY: build install clean
 
 build:
 #	make -C src defconfig
@@ -11,4 +11,7 @@ install:
 		[ -e $(BUILD_TREE_DIR)/bin/$$prog ] ||	\
 		ln -sf /bin/busybox $(BUILD_TREE_DIR)/bin/$$prog;	\
 	done
+
+clean:
+	cd src/ && git clean -xffd
 

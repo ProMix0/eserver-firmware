@@ -1,0 +1,8 @@
+#!/bin/sh
+
+IMG_NAME=build_image
+set -e
+
+docker build -t $IMG_NAME .
+docker run -v ./:/project/ -it --rm $IMG_NAME $@
+

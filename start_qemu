@@ -1,9 +1,11 @@
 #!/bin/bash
 
 mkdir -p out/images/
+mkdir -p out/romfs/
 
 # TODO romfs target
-cp -r out/build_tree/{bin,lib} out/romfs/
+cp -r out/build_tree/* out/romfs/
+cp -r out/build_tree/lib out/romfs/lib64
 
 unlink out/romfs/bin/init
 # /bin/init don't work (why?)

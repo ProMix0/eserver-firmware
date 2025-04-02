@@ -1,4 +1,4 @@
-.PHONY: prepare build install
+.PHONY: prepare build install clean
 
 src/.config: defconfig
 	cp defconfig src/.config
@@ -12,4 +12,7 @@ build:
 
 install:
 	cp src/vmlinux $(OUTDIR)/images/vmlinux
+
+clean:
+	cd src && git clean -xffd
 
