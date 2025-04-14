@@ -1,19 +1,4 @@
 #!/bin/bash
 
-mkdir -p out/images/
-mkdir -p out/romfs/
-
-# TODO romfs target
-cp -r out/build_tree/* out/romfs/
-cp -r out/build_tree/lib out/romfs/lib64
-
-unlink out/romfs/bin/init
-# /bin/init don't work (why?)
-cp -f init out/romfs/
-
-cd out/romfs
-find . | cpio -o -R root:root -H newc > ../images/initrd.img
-cd -
-
-qemu-system-x86_64 -kernel out/images/vmlinux -initrd out/images/initrd.img -nographic -append 'console=ttyS0 debug ignore_loglevel loglevel=8 rootfstype=tmpfs' -m 1000 -cpu host -enable-kvm
+qemu-system-x86_64 -kernel out/vmlinux -initrd out/initrd.img -nographic -append 'console=ttyS0 rootfstype=tmpfs' -m 1000 -cpu host -enable-kvm
 

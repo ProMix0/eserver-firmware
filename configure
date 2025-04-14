@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Currently this is just a stub
+echo "export ESERVER_CONFIG_READED=1" > .config
+echo "export ESERVER_PLATFORM=x8dtl-i" >> .config
+echo "export ESERVER_TARGET=router" >> .config
+

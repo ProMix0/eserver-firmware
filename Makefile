@@ -1,37 +1,22 @@
-export OUTDIR=$(shell pwd)/out
-export ROMFSDIR=$(OUTDIR)/romfs
-export COMMON_MAKEFLAGS=-j$(shell nproc)
-export BUILD_TREE_DIR=$(OUTDIR)/build_tree
+include common.mk
 
-PACKAGES_NAMES=linux glibc busybox
-# short for PACKAGES
-# allow to build a single package from cli
-ifneq ($P,)
-PACKAGES_NAMES:=$P
+ifneq ($(ESERVER_CONFIG_READED),1)
+$(error Not configured! You must run ./configure first)
 endif
 
-PACKAGES=$(addprefix packages/,$(PACKAGES_NAMES))
+.PHONY: all clean
 
-.PHONY: all prepare build install clean
+# currently just pass to target
+all:
+	$(BASH_SET_FAIL)	\
+	make -C targets/$(ESERVER_TARGET) 2>&1 | tee build.log
 
-all: prepare build install
-
-$(shell rm build.log)
-build install:
-	set -o pipefail;	\
-	for package in $(PACKAGES); do	\
-		make $@ -C $$package 2>&1 | tee -a build.log || exit 1;	\
-	done
-
-prepare:
-	for package in $(PACKAGES); do	\
-		make $@ -C $$package || true;	\
-	done
+# test only
+%:
+	make $@ -C targets/$(ESERVER_TARGET)
 
 clean:
-	for package in $(PACKAGES); do	\
-		make $@ -C $$package || exit 1;	\
-	done
-	rm -rf $(ROMFSDIR)
+	make clean -C targets/$(ESERVER_TARGET)
+	rm -rf $(OUTDIR)/*
 	rm -rf $(BUILD_TREE_DIR)/*
 
