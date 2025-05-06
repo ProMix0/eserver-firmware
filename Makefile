@@ -17,6 +17,7 @@ all:
 
 clean:
 	make clean -C targets/$(ESERVER_TARGET)
+	make clean -C packages
 	rm -rf $(OUTDIR)/*
 	rm -rf $(BUILD_TREE_DIR)/*
 

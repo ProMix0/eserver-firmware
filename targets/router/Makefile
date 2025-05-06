@@ -1,4 +1,4 @@
-.PHONY: all prepare_buildtree build_packages generate_artifacts
+.PHONY: all prepare_buildtree build_packages generate_artifacts clean
 
 all: prepare_buildtree build_packages generate_artifacts
 
@@ -25,4 +25,7 @@ generate_artifacts:
 	cp -r "$(BUILD_TREE_DIR)"/* "$(ROMFS_DIR)"/
 	make finish_romfs -C $(CURRENT_PLATFORM_DIR)
 	make make_image -C $(CURRENT_PLATFORM_DIR)
+
+clean:
+	# currantly a stub
 	
