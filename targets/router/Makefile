@@ -12,8 +12,7 @@ $(BUILD_TREE_DIR)/%:
 
 build_libc:
 	make prepare -C $(PACKAGES_DIR)/linux
-	make build -C $(PACKAGES_DIR) P=glibc
-	make install -C $(PACKAGES_DIR) P=glibc
+	make build install -C $(PACKAGES_DIR) P=glibc
 
 build_packages:
 	make build -C $(PACKAGES_DIR) P=busybox

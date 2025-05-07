@@ -1,4 +1,4 @@
-# short for PACKAGES
+# P is a short for PACKAGES
 # allow to build a single package from cli
 ifeq ($P,)
 PACKAGES:=$(shell find . -maxdepth 1 -mindepth 1 -type d -printf '%f\n')

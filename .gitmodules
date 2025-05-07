@@ -7,3 +7,6 @@
 [submodule "glibc"]
 	path = packages/glibc/src
 	url = https://sourceware.org/git/glibc.git
+[submodule "packages/uclibc/src"]
+	path = packages/uclibc/src
+	url = https://git.uclibc-ng.org/git/uclibc-ng.git

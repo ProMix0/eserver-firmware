@@ -11,9 +11,11 @@ all:
 	$(BASH_SET_FAIL)	\
 	make -C targets/$(ESERVER_TARGET) 2>&1 | tee build.log
 
-# test only
-%:
-	make $@ -C targets/$(ESERVER_TARGET)
+target_%:
+	make $* -C targets/$(ESERVER_TARGET)
+
+package_%:
+	make $* -C packages
 
 clean:
 	make clean -C targets/$(ESERVER_TARGET)
