@@ -18,24 +18,20 @@ build_libc:
 build_packages:
 	make build -C $(PACKAGES_DIR) P=busybox
 	make install -C $(PACKAGES_DIR) P=busybox
-	mkdir -p $(OUTDIR) # temporary solution
-	make build install -C $(PACKAGES_DIR)/linux
-	# linux must be installed by platform
-	# (maybe built too)
 
 ROMFS_DIRS:=proc dev sys
 build_image:
+	mkdir -p $(OUTDIR) # temporary solution
 	mkdir -p $(addprefix $(ROMFS_DIR)/,$(ROMFS_DIRS))
 	-unlink $(ROMFS_DIR)/lib64
 	ln -sf lib $(ROMFS_DIR)/lib64
 	#TODO copy only needed
 	cp -r "$(BUILD_TREE_DIR)"/* "$(ROMFS_DIR)"/
 	cp $(CURRENT_TARGET_DIR)/init $(ROMFS_DIR)/
-	# TODO gzip (.cpio.gz)
-	$(BASH_SET_FAIL)	\
-	cd $(ROMFS_DIR) &&	\
-	find . | cpio -o -R root:root -H newc > $(OUTDIR)/initrd.cpio
+	$(CURRENT_TARGET_DIR)/make_cpio_list.sh "$(ROMFS_DIR)" > $(OUTDIR)/cpio_list
+	make build -C $(PACKAGES_DIR)/linux CONFIG_INITRAMFS_SOURCE="$(OUTDIR)/cpio_list"
+	make install -C $(PACKAGES_DIR)/linux
 
 clean:
-	# currantly a stub
+	# currently a stub
 
