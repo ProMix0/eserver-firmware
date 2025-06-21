@@ -1,4 +1,5 @@
 #!/bin/bash
 
+# TODO bootloader '-drive format=raw,file='
 qemu-system-x86_64 -kernel out/vmlinux -nographic -append 'console=ttyS0 rootfstype=tmpfs' -m 1000 -cpu host -enable-kvm
 
