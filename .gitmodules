@@ -10,3 +10,6 @@
 [submodule "packages/uclibc/src"]
 	path = packages/uclibc/src
 	url = https://git.uclibc-ng.org/git/uclibc-ng.git
+[submodule "llvm"]
+	path = packages/llvm/src
+	url = https://github.com/llvm/llvm-project.git

@@ -13,6 +13,7 @@ export PLATFORMS_DIR:=$(mkfile_dir)/platforms
 
 export ROMFS_DIR:=$(OUTDIR)/romfs
 export BUILD_TREE_DIR:=$(BUILD_DIR)/build_tree
+export TOOLCHAIN_DIR:=$(BUILD_DIR)/toolchain
 
 export BUILD_MAKEFLAGS:=-j$(shell nproc)
 export BASH_SET_FAIL:=set -o pipefail; set -e;

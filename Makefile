@@ -14,6 +14,7 @@ all:
 target_%:
 	make $* -C targets/$(ESERVER_TARGET)
 
+# make package_build P=llvm
 package_%:
 	make $* -C packages
 

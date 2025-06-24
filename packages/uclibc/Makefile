@@ -1,6 +1,9 @@
 .PHONY: build install clean
 
-SRC_FLAGS := KERNEL_HEADERS=$(BUILD_TREE_DIR)/include/
+SRC_FLAGS := KERNEL_HEADERS=$(BUILD_TREE_DIR)/include/ 	\
+		CC=$(TOOLCHAIN_DIR)/bin/clang		\
+		NM=$(TOOLCHAIN_DIR)/bin/llvm-nm	\
+		AR=$(TOOLCHAIN_DIR)/bin/llvm-ar
 
 src/.config: defconfig
 	cp defconfig src/.config

@@ -12,7 +12,8 @@ $(BUILD_TREE_DIR)/%:
 
 build_libc:
 	make prepare -C $(PACKAGES_DIR)/linux
-	make build install -C $(PACKAGES_DIR) P=glibc
+	make build install -C $(PACKAGES_DIR) P=llvm
+	make build install -C $(PACKAGES_DIR) P=uclibc
 
 build_packages:
 	make build -C $(PACKAGES_DIR) P=busybox
