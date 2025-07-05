@@ -7,7 +7,7 @@ PACKAGES:=$P
 endif
 
 .PHONY: prepare build install clean
-SET_TERM_TITLE=term_title "$@ - $$package";
+SET_TERM_TITLE=term_title.sh "$@ - $$package";
 
 ifeq ($(MAKECMDGOALS),)
 $(error Target for packages must be specified! \(prepare, build, install, clean\))

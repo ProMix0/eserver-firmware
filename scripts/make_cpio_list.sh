@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# this script is a workaround to avoid creating /dev/console node cause it requires root
-# first argument must be romfs directory which will be parsed to produce cpio list
-# kernel will assemble cpio archive from this list through usr/gen_init_cpio
+# This script is a workaround to avoid creating /dev/console node cause it requires root
+# First argument must be romfs directory which will be parsed to produce cpio list
+# Kernel will assemble cpio archive from this list through usr/gen_init_cpio
 
 test -n "$1" && cd "$1" || {
 	echo "Can't cd to $1" >&2
