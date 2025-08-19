@@ -20,8 +20,11 @@ build:
 	make -C src $(BUILD_MAKEFLAGS) $(SRC_FLAGS)
 
 install:
-	cp src/vmlinux $(OUTDIR)/vmlinux
+	cp src/arch/x86/boot/image.iso $(OUTDIR)/
 
 clean:
 	cd src && git clean -xffd
+
+linux_%:
+	make -C src $(SRC_FLAGS) $*
 
