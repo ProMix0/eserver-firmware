@@ -29,7 +29,7 @@ build_image:
 	cp -r "$(BUILD_TREE_DIR)"/* "$(ROMFS_DIR)"/
 	cp $(CURRENT_TARGET_DIR)/init $(ROMFS_DIR)/
 	make_cpio_list.sh "$(ROMFS_DIR)" | filter_cpio.sh no-static no-include > $(OUTDIR)/cpio_list
-	make build -C $(PACKAGES_DIR)/linux CONFIG_INITRAMFS_SOURCE="$(OUTDIR)/cpio_list"
+	make build -C $(PACKAGES_DIR)/linux CONFIG_INITRAMFS_SOURCE="$(OUTDIR)/cpio_list" KBUILD_BUILD_TIMESTAMP=
 	make install -C $(PACKAGES_DIR)/linux
 
 clean:
