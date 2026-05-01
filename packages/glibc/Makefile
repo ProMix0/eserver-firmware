@@ -15,12 +15,11 @@ build/Makefile:
 .PHONY: build install clean
 
 build: build/Makefile
-	make -C build $(BUILD_MAKEFLAGS)
+	make -C build/ lib $(BUILD_MAKEFLAGS)
 
 install:
-	make -C build install DESTDIR="$(BUILD_TREE_DIR)"
+	make -C build/ install DESTDIR="$(BUILD_TREE_DIR)"
 
 clean:
-	cd src/ && git clean -xffd
 	rm -rf build
 

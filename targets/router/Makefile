@@ -25,10 +25,11 @@ build_image:
 	mkdir -p $(addprefix $(ROMFS_DIR)/,$(ROMFS_DIRS))
 	-unlink $(ROMFS_DIR)/lib64
 	ln -sf lib $(ROMFS_DIR)/lib64
-	#TODO copy only needed
+	#TODO copy only needed and no date update
 	cp -r "$(BUILD_TREE_DIR)"/* "$(ROMFS_DIR)"/
-	cp $(CURRENT_TARGET_DIR)/init $(ROMFS_DIR)/
-	make_cpio_list.sh "$(ROMFS_DIR)" | filter_cpio.sh no-static no-include > $(OUTDIR)/cpio_list
+	install -C $(CURRENT_TARGET_DIR)/init $(ROMFS_DIR)/
+	make_cpio_list.sh "$(ROMFS_DIR)" | filter_cpio.sh no-static no-include > $(OUTDIR)/cpio_list.tmp
+	cmp_exchg.sh $(OUTDIR)/cpio_list.tmp $(OUTDIR)/cpio_list
 	make build -C $(PACKAGES_DIR)/linux CONFIG_INITRAMFS_SOURCE="$(OUTDIR)/cpio_list" KBUILD_BUILD_TIMESTAMP=
 	make install -C $(PACKAGES_DIR)/linux
 
