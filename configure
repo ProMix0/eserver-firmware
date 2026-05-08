@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Currently this is just a stub
-echo "export ESERVER_CONFIG_READED=1" > .config
-echo "export ESERVER_PLATFORM=x8dtl-i" >> .config
-echo "export ESERVER_TARGET=router" >> .config
+if [[ -z "$1" ]]; then
+	echo Use \"$0 [target name]\" with one of the following targets:
+	find targets/ -maxdepth 2 -mindepth 2 -type d | sed 's%^targets/%%'
+else
+	echo "export ESERVER_CONFIGURED=1" > .config
+	echo "export ESERVER_TARGET=$1" >> .config
+fi
 

@@ -9,7 +9,6 @@ export BUILD_DIR:=$(mkfile_dir)/build
 export SCRIPTS_DIR:=$(mkfile_dir)/scripts
 export PACKAGES_DIR:=$(mkfile_dir)/packages
 export TARGETS_DIR:=$(mkfile_dir)/targets
-export PLATFORMS_DIR:=$(mkfile_dir)/platforms
 
 export ROMFS_DIR:=$(OUTDIR)/romfs
 export BUILD_TREE_DIR:=$(BUILD_DIR)/build_tree
@@ -22,5 +21,4 @@ export PATH:=$(SCRIPTS_DIR):$(PATH)
 -include .config
 
 export CURRENT_TARGET_DIR:=$(TARGETS_DIR)/$(ESERVER_TARGET)
-export CURRENT_PLATFORM_DIR:=$(PLATFORMS_DIR)/$(ESERVER_PLATFORM)
 

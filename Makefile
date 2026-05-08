@@ -1,6 +1,6 @@
 include common.mk
 
-ifneq ($(ESERVER_CONFIG_READED),1)
+ifneq ($(ESERVER_CONFIGURED),1)
 $(error Not configured! You must run ./configure first)
 endif
 
