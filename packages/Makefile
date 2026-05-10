@@ -17,6 +17,7 @@ build install prepare:
 	$(BASH_SET_FAIL)	\
 	for package in $(PACKAGES); do	\
 		$(SET_TERM_TITLE)	\
+		PKG_BUILD_DIR=$(BUILD_DIR)/$(ESERVER_TARGET)/$$package	\
 		make $@ -C $$package;	\
 	done
 
@@ -24,6 +25,7 @@ clean:
 	$(BASH_SET_FAIL)	\
 	for package in $(PACKAGES); do	\
 		$(SET_TERM_TITLE)	\
+		PKG_BUILD_DIR=$(BUILD_DIR)/$(ESERVER_TARGET)/$$package	\
 		make $@ -C $$package;	\
 	done
 

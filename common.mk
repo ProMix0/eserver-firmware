@@ -11,7 +11,7 @@ export PACKAGES_DIR:=$(mkfile_dir)/packages
 export TARGETS_DIR:=$(mkfile_dir)/targets
 
 export ROMFS_DIR:=$(OUTDIR)/romfs
-export BUILD_TREE_DIR:=$(BUILD_DIR)/build_tree
+export STAGING_TREE_DIR:=$(BUILD_DIR)/staging_tree
 export TOOLCHAIN_DIR:=$(BUILD_DIR)/toolchain
 
 export BUILD_MAKEFLAGS:=-j$(shell nproc)

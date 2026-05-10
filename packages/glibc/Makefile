@@ -1,25 +1,26 @@
-build/Makefile:
-	mkdir -p build
+$(PKG_BUILD_DIR)/Makefile:
+	mkdir -p $(PKG_BUILD_DIR)
 	# -Wno-error=attribute-alias for docker alpine's musl
-	cd build && ../src/configure	\
+	# TODO make src path
+	cd $(PKG_BUILD_DIR) && ../src/configure	\
 		--prefix=	\
-		--with-headers="$(BUILD_TREE_DIR)/include"	\
+		--with-headers="$(STAGING_TREE_DIR)/include"	\
 		--with-sysheaders=''	\
 		--disable-static	\
 		--enable-shared	\
 		CFLAGS='-Wno-error=attribute-alias -O2'	\
 		--disable-doc	\
-		--with-sysroot="$(BUILD_TREE_DIR)"	\
-		--with-build-sysroot="$(BUILD_TREE_DIR)"
+		--with-sysroot="$(STAGING_TREE_DIR)"	\
+		--with-build-sysroot="$(STAGING_TREE_DIR)"
 
 .PHONY: build install clean
 
-build: build/Makefile
-	make -C build/ lib $(BUILD_MAKEFLAGS)
+build: $(PKG_BUILD_DIR)/Makefile
+	make -C $(PKG_BUILD_DIR)/ lib $(BUILD_MAKEFLAGS)
 
 install:
-	make -C build/ install DESTDIR="$(BUILD_TREE_DIR)"
+	make -C $(PKG_BUILD_DIR)/ install DESTDIR="$(STAGING_TREE_DIR)"
 
 clean:
-	rm -rf build
+	rm -rf $(PKG_BUILD_DIR)
 

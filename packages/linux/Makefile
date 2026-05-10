@@ -13,7 +13,7 @@ src/.config: config
 	cp config src/.config
 
 prepare: src/.config
-	make -C src/ headers_install INSTALL_HDR_PATH="$(BUILD_TREE_DIR)" $(SRC_FLAGS)
+	make -C src/ headers_install INSTALL_HDR_PATH="$(STAGING_TREE_DIR)" $(SRC_FLAGS)
 
 build:
 	make -C src/ vmlinux $(BUILD_MAKEFLAGS) $(SRC_FLAGS)

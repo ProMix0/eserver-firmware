@@ -4,10 +4,10 @@
 all: prepare_buildtree build_libc build_packages build_image
 
 BUILDTREE_DIRS = include lib bin
-BUILDTREE_DEPENDS = $(addprefix $(BUILD_TREE_DIR)/,$(BUILDTREE_DIRS))
+BUILDTREE_DEPENDS = $(addprefix $(STAGING_TREE_DIR)/,$(BUILDTREE_DIRS))
 prepare_buildtree: $(BUILDTREE_DEPENDS)
 
-$(BUILD_TREE_DIR)/%:
+$(STAGING_TREE_DIR)/%:
 	mkdir -p $@
 
 build_libc:
@@ -26,7 +26,7 @@ build_image:
 	-unlink $(ROMFS_DIR)/lib64
 	ln -sf lib $(ROMFS_DIR)/lib64
 	#TODO copy only needed and no date update
-	cp -r "$(BUILD_TREE_DIR)"/* "$(ROMFS_DIR)"/
+	cp -r "$(STAGING_TREE_DIR)"/* "$(ROMFS_DIR)"/
 	install -C $(CURRENT_TARGET_DIR)/init $(ROMFS_DIR)/
 	make_cpio_list.sh "$(ROMFS_DIR)" | filter_cpio.sh no-static no-include > $(OUTDIR)/cpio_list.tmp
 	cmp_exchg.sh $(OUTDIR)/cpio_list.tmp $(OUTDIR)/cpio_list
